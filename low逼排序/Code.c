@@ -32,12 +32,13 @@ int main(int argc, const char* argv[])
 	for ( i = 0; i < N; i++)
 	{
 		if (*(array1 + i) == -1)
-			*(array + i) = -1;
+			*(array + i) = -1;//将伴随判断数组设为-1
 	}
 	free(array1);
 
 	array1 = (int*)malloc(sizeof(int)*count);
 	j = 0;
+	//将原始数值保留下来的赋值给新的数组做排序
 	for ( i = 0; i < N; i++)
 	{
 		if (*(array+i) != -1)
@@ -73,7 +74,7 @@ void xiao(int* array,int *array1,int N,int* count)
 	{
 		for (j = i+1; j < N; j++)
 		{
-			if (*(array + i) > *(array + j))
+			if (*(array + i) > *(array + j))//将不满足的判断数组设为-1
 			{
 				*(array1 + i) = -1;
 				break;
@@ -82,7 +83,7 @@ void xiao(int* array,int *array1,int N,int* count)
 		if (*(array1 + i) != -1)
 		{
 			(*count)++;
-			da(array, array1, i, count);
+			da(array, array1, i, count);//满足的继续做下一个判断，并将count++
 		}
 	}
 	
@@ -98,7 +99,7 @@ void da(int* array, int *array1, int i, int* count)
 			if (*(array + i) < *(array + j))
 			{
 				*(array1 + i) = -1;
-				(*count)--;
+				(*count)--;//将不满足的count--了
 				return;
 			}
 		}
